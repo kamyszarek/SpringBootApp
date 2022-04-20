@@ -62,15 +62,6 @@ public class MainController {
         return "homepage";
     }
 
-    @RequestMapping("/Success")
-    public String getSuccess() {
-        return "success";
-    }
-
-    @RequestMapping("/Adminn")
-    public String getAdminn() {
-        return "adminn";
-    }
 
     @RequestMapping("/myProfilePage")
     public String myProfile(Model model_user, Model model_address) {
@@ -102,14 +93,15 @@ public class MainController {
     public String savePassword(@ModelAttribute(value="user") User user, Model hint1, Model hint2, Model hint3) {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         String login = authentication.getName();
         String cur_pass = user.getPassword();
         String new_pass = user.getNew_password();
         String new_pass2 = user.getConfirm_password();
 
-        if(cur_pass.equals(userRepository.findByLogin(login).getPassword())) {
+        if(encoder.matches(cur_pass, userRepository.findByLogin(login).getPassword())) {
             if (new_pass.equals(new_pass2)) {
-                userRepository.changePassword(login, new_pass);
+                userRepository.changePassword(login, new BCryptPasswordEncoder().encode(new_pass));
                 return "redirect:/changePasswordPage";
             } else {
                 hint2.addAttribute("hint2", "Different passwords");
@@ -167,14 +159,7 @@ public class MainController {
         }
 
         if(right_login && right_fields) {
-            Address addr = Address.builder()
-                    .country(address.getCountry())
-                    .state(address.getState())
-                    .city(address.getCity())
-                    .street(address.getStreet())
-                    .house_no(address.getHouse_no())
-                    .flat_no(address.getFlat_no())
-                    .build();
+
             adr_id = addressRepository.save(address).getId();
 
             User user1 = User.builder()
@@ -186,7 +171,6 @@ public class MainController {
                     .enabled(true)
                     .build();
             userRepository.save(user1);
-//            user1.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
             u_id = userRepository.save(user1).getUser_id();
 
             Users_roles users_roles = new Users_roles();
