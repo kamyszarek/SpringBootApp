@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:name="http://www.w3.org/1999/xhtml">
+<html>
+
+<head>
+<style>
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #EAFAF1;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="topnav">
+    <center>
+        <a th:href="@{/HomePage}">Home</a>
+        <a th:href="@{/myProfilePage}">My Profile</a>
+        <a th:href="@{/changePasswordPage}">Change password</a>
+        <a th:href="@{/admin/registeruserPage}" sec:authorize="hasAuthority('ADMIN')">Registration</a>
+        <a th:href="@{/admin/deleteuserPage}" sec:authorize="hasAuthority('ADMIN')">Delete user</a>
+        <a th:href="@{/logout}">Logout</a>
+    </center>
+</div>
+
+<center>
+    <form th:action="@{/showUsers}">
+        <h3>All users:</h3>
+        <table border="1" cellpadding="2" cellspacing="2">
+            <tr>
+                <th width="25px">Id</th>
+                <th width="100px">Name</th>
+                <th width="100px">Surname</th>
+            </tr>
+
+            <tr th:each="user :${users}">
+                <td th:text="${user.user_id}"></td>
+                <td th:text="${user.name}"></td>
+                <td th:text="${user.surname}"></td>
+            </tr>
+
+            <input type="submit" value="Show"><br><br>
+        </table>
+    </form> <br><br>
+</center>
+
+
+
+<!--    <div>-->
+<!--        <select th:field="*{u_id}">-->
+<!--            <option th:each="user : ${users}"-->
+<!--                    th:text="${user.name}"-->
+<!--                    th:value="${user.u_id}">-->
+<!--        </select>-->
+<!--    </div>-->
+
+
+
+
+
+</body>
+</html>

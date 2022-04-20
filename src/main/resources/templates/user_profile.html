@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<html>
+<style>
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #EAFAF1;
+}
+
+.topnav {
+
+  height: 30px;
+  font-size: 26px;
+  overflow: hidden;
+  background-color: #333;
+}
+
+.topnav a {
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #04AA6D;
+  color: white;
+}
+
+label {
+display: inline-block;
+width: 150px;
+}
+
+.text_label {
+  margin-left: 50px;
+  font-weight: bold;
+}
+</style>
+
+<head>
+    <title>
+
+    </title>
+</head>
+
+<body>
+
+<div class="topnav">
+    <center>
+        <a th:href="@{/HomePage}">Home</a>
+        <a th:href="@{/myProfile}">My Profile</a>
+        <a th:href="@{/changePasswordPage}">Change password</a>
+        <a th:href="@{/admin/registeruserPage}" sec:authorize="hasAuthority('ADMIN')">Registration</a>
+        <a th:href="@{/admin/deleteuserPage}" sec:authorize="hasAuthority('ADMIN')">Delete user</a>
+        <a th:href="@{/logoutPage}">Logout</a>
+    </center>
+</div>
+
+
+
+
+
+    <form th:action="@{/showPersonalData}">
+        <br><br><label class="text_label" for="fname">Name:</label>
+        <label class="input_label" id="fname" th:text="${user.name}"></label><br><br>
+        <label class="text_label" for="lname">Surname:</label>
+        <label class="input_label" id="lname" th:text="${user.surname}"></label> <br><br>
+
+        <label class="text_label">Country:</label>
+        <label class="input_label" th:text="${address.country}"></label><br><br>
+        <label class="text_label">State:</label>
+        <label class="input_label" th:text="${address.state}"></label><br><br>
+        <label class="text_label">City:</label>
+        <label class="input_label" th:text="${address.city}"></label><br><br>
+        <label class="text_label">Street:</label>
+        <label class="input_label" th:text="${address.street}"></label><br><br>
+        <label class="text_label">House number:</label>
+        <label class="input_label" th:text="${address.house_no}"></label><br><br>
+        <label class="text_label">Flat number:</label>
+        <label class="input_label" th:text="${address.flat_no}"></label><br><br>
+<!--        <label class="input_label" for="state">State:</label>-->
+<!--        <label class="input_label" for="city">City:</label>-->
+<!--        <label class="input_label" for="street">Street:</label>-->
+<!--        <label class="input_label" for="house_no">House number:</label>-->
+<!--        <label class="input_label" for="flat_no">Flat number:</label>-->
+    </form>
+ <br><br>
+
+
+
+
+</body>
+</html>
