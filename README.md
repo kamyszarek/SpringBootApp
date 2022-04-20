@@ -3,7 +3,7 @@ This application shows the basic functionalities for managing a simple company w
 
 ### Prepare environment
 The application was coded in IntelliJ IDEA so it would be great to use that environment to run this project.<br>
-To run this app you need XAMPP(or any other program that allows to manage local web server) and download database file "my company" from this repo.<br>
+To run this app you need XAMPP(or any other program that allows to manage local web server) and download database file "mycompany" from this repo.<br>
 After that, place the database file in the right folder in xampp catalog (xampp->mysql->data).
 
 ### Change database source in app
