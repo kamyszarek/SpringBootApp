@@ -47,7 +47,7 @@ body {
     <a th:href="@{/changePasswordPage}">Change password</a>
     <a th:href="@{/admin/registeruserPage}" sec:authorize="hasAuthority('ADMIN')">Registration</a>
     <a th:href="@{/admin/deleteuserPage}" sec:authorize="hasAuthority('ADMIN')">Delete user</a>
-    <a th:href="@{/logout}">Logout</a>
+    <a th:href="@{/login}">Logout</a>
   </center>
 </div>
 
