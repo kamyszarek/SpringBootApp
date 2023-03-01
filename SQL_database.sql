@@ -1,10 +1,10 @@
-IF NOT EXISTS(SELECT * FROM sys.databases WHERE name = 'mycompany2')
+IF NOT EXISTS(SELECT * FROM sys.databases WHERE name = 'mycompany')
   BEGIN
-    CREATE DATABASE mycompany2;
+    CREATE DATABASE mycompany;
 
     END
 	go
-use mycompany2;
+use mycompany;
 
 drop table users_roles;
 drop table users;
