@@ -15,5 +15,5 @@ This application shows the basic functionalities for managing a simple company w
 ## Running app
 
 Now you can run this project. To log in, you can use 2 example users with different authentications:<br>
-ADMIN- Login:ArekAdmin, Password:AdminArek<br>
-USER- Login:Janek99, Password:Janek99
+ADMIN- Login:arek99, Password:arek99<br>
+USER- Login:maria99, Password:maria99
